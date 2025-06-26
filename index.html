@@ -1,26 +1,26 @@
-//問合せフォーム(inquiry_form.html)
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Inquiry Form</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>XSSテスト</title>
 </head>
 <body>
-  <div class="container">
-    <h2>問合せフォーム</h2>
-    <form action="confirmation.php" method="POST">
-      <label for="name">お名前:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="email">メールアドレス:</label>
-      <input type="text" id="email" name="email" required>
-      
-      <label for="message">問い合わせ内容:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-      
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-  </body>
+  <h1>XSSテストフォーム</h1>
+
+  <form method="GET" action="">
+    <input type="text" name="input" placeholder="何か入力してみてください">
+    <input type="submit" value="送信">
+  </form>
+
+  <p>あなたの入力：</p>
+  <div id="output"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const userInput = params.get("input");
+    if (userInput) {
+      document.getElementById("output").innerHTML = userInput;
+    }
+  </script>
+</body>
 </html>
