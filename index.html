@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>XSSテスト</title>
+<meta charset="UTF-8">
+<title>XSS学習用デモ</title>
 </head>
 <body>
-  <h1>XSSテストフォーム</h1>
-
-  <form method="GET" action="">
-    <input type="text" name="input" placeholder="何か入力してみてください">
-    <input type="submit" value="送信">
-  </form>
-
-  <p>あなたの入力：</p>
-  <div id="output"></div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const userInput = params.get("input");
-    if (userInput) {
-      document.getElementById("output").innerHTML = userInput;
-    }
-  </script>
+<h2>XSS練習テキストボックス</h2>
+ 
+  <form method="GET">
+<input type="text" name="input">
+<button type="submit">表示</button>
+</form>
+ 
+  <p>出力: 
+<span>
+<!-- あえてエスケープせずにそのまま表示 -->
+<script>
+        const params = new URLSearchParams(window.location.search);
+        document.write(params.get("input"));
+</script>
+</span>
+</p>
 </body>
 </html>
